@@ -1,5 +1,5 @@
 import './App.css'
-import ImageUploader from './components/image-uploader'
+import ImageUploader from './components/imageUploader'
 import Navbar from './components/navbar'
 
 function App() {
