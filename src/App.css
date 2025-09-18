@@ -3,6 +3,7 @@
 *{
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 :root {
   --color-bg:#F9FAFB;
@@ -10,11 +11,10 @@
   --color-white:#FFFFFF;
   --text-color:#121826;
 
-  --secondary-color:#C2DAF9;
-  --gris-clair:#E5E7EB;
-  --gris-moins:#212936;
-  --gris-autre:#4D5562;
-  --blanc:#F9FAFBCC;
+  --color-secondary:#C2DAF9;
+  --color-gray-light:#E5E7EB;
+  --color-gray-dark:#212936;
+  
   background-color: var(--color-bg);
   color: var(--text-color);
 }
@@ -23,8 +23,8 @@
   --color-bg: #121826;
   --color-white: #212936;
   --text-color:#F9FAFBCC;
-  --gris-moins:#E5E7EB;
-  --gris-clair:#4D5562;
+  --color-gray-dark:#F9FAFBCC;
+  --color-gray-light:#4D5562;
   --white:#FFFFFF;
 }
 
@@ -55,7 +55,7 @@ html,body {
 }
 
 .navbar {
-  border-bottom: 1px solid var(--gris-clair);
+  border-bottom: 1px solid var(--color-gray-light);
   padding: 1rem 2rem;
 }
 
@@ -67,7 +67,7 @@ html,body {
 }
 
 .navbar .toggle-theme{
-  border: 1px solid var(--gris-clair);
+  border: 1px solid var(--color-gray-light);
   padding: 4px 6px ;
   border-radius: 6px;
   background-color: var(--color-white);
@@ -107,7 +107,7 @@ html,body {
   opacity: 0.7;
 }
 .uploader-container .card-dashed {
-  border: 2px dashed var(--gris-clair);
+  border: 2px dashed var(--color-gray-light);
   border-radius: 5px;
   padding: 20px;
   min-height: 300px;
@@ -129,7 +129,7 @@ html,body {
   font-weight: 300;
   font-size: 12px;
   margin-top: 10px;
-  color: var(--gris-moins);
+  color: var(--color-gray-dark);
 }
 
 .progress-bar-container.card{
@@ -151,10 +151,10 @@ html,body {
 
 .progress-bar-container .progress-bar {
   position: relative;
-  width: 400px;
+  width: 100%;
   height: 7px;
   border-radius: 999px;
-  background-color: var(--gris-clair);
+  background-color: var(--color-gray-light);
   overflow: hidden;
 }
 
@@ -227,4 +227,23 @@ strong {
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-15px); }
+}
+
+@media (max-width: 480px) {
+  .uploader-container{
+    padding: 0 20px;
+    width: 100%;
+  }
+  .uploader-container .card{
+    min-width: 0;
+    width: 100%;
+  }
+  .uploader-container .card-dashed {
+    min-height: 0;
+    padding: 40px 0;
+  }
+  .progress-bar-container .progress-bar{
+    min-width: 0;
+    width: 100%;
+  }
 }
