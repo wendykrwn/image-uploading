@@ -1,21 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+*{
+  padding: 0;
+  margin: 0;
+}
+:root {
+  --color-bg:#F9FAFB;
+  --color-primary:#3662E3;
+  --color-white:#FFFFFF;
+  --text-color:#121826;
+
+  --secondary-color:#C2DAF9;
+  --gris-clair:#E5E7EB;
+  --gris-moins:#212936;
+  --gris-autre:#4D5562;
+  --blanc:#F9FAFBCC;
+  background-color: var(--color-bg);
+  color: var(--text-color);
+}
+
+[data-theme="dark"] {
+  --color-bg: #121826;
+  --color-white: #212936;
+  --text-color:#F9FAFBCC;
+  --gris-moins:#E5E7EB;
+  --gris-clair:#4D5562;
+  --white:#FFFFFF;
+}
+
 #root {
+  /* max-width: 1280px; */
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  height: 100%;
+}
+
+
+html,body {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  height: 100%;
+  margin:0;
+  padding: 0;
+  transition: all ease-in-out .3s;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.navbar {
+  border-bottom: 1px solid var(--gris-clair);
+  padding: 1rem 2rem;
+}
+
+.navbar .navbar-content {
+  display: flex;
+  justify-content: space-between;
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  margin: auto;
+}
+
+.navbar .toggle-theme{
+  border: 1px solid var(--gris-clair);
+  padding: 4px 6px ;
+  border-radius: 6px;
+  background-color: var(--color-white);
+  cursor: pointer;
+}
+
+
+.uploader-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.uploader-container .card {
+  cursor: pointer;
+  width: max-content;
+  opacity: 1;
+  transition: all 0.3s;
+  min-width: 500px;
+
+  /* width: 600px; */
+}
+
+.card{
+  padding: 10px;
+  box-shadow: 0 5px 10px rgba(77, 84, 97,0.20);
+  background-color: var(--color-white);
+  border-radius: 5px;
+}
+
+[data-theme="dark"] .card {
+  box-shadow: none;
+}
+
+.uploader-container .card.active {
+  opacity: 0.7;
+}
+.uploader-container .card-dashed {
+  border: 2px dashed var(--gris-clair);
+  border-radius: 5px;
+  padding: 20px;
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding: 100px 130px; */
+}
+
+.uploader-container .img-upload {
+  width: 35px;
+  margin-bottom: 15px;
+}
+
+.uploader-container .active .img-upload {
+  animation: float .5s ease-in-out infinite;
+}
+.uploader-container .img-valid {
+  font-weight: 300;
+  font-size: 12px;
+  margin-top: 10px;
+  color: var(--gris-moins);
+}
+
+.progress-bar-container.card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 40px;
+}
+
+.progress-bar-container p {
   text-align: center;
 }
 
-.card {
-  padding: 2em;
+.progress-bar-container .strong {
+  font-weight: 700;
 }
 
-.uploader-container {
-  border: solid 1px black;
-  cursor: pointer;
+.progress-bar-container .progress-bar {
+  position: relative;
+  width: 400px;
+  height: 7px;
+  border-radius: 999px;
+  background-color: var(--gris-clair);
+  overflow: hidden;
 }
+
+.progress-bar-container .progress-bar::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: var(--progress, 0%);
+  width: 15%;
+  height: 100%;
+  border-radius: 999px;
+  transform: translateX(-100%);
+  background-color: var(--color-primary);
+  transition: left 0.3s linear;
+}
+
+strong {
+  color: var(--color-primary);
+  font-weight: 400;
+}
+
 
 .image-uploaded{
   width: 100%;
   max-height: 400px;
   object-fit: contain;
+  border-radius: 5px;
+}
+
+.btn {
+  color: var(--color-white);
+  display: flex;
+  border: none;
+  cursor: pointer;
+  padding: 5px 8px;
+  background-color: var(--color-primary);
+  border-radius: 5px;
+  gap:5px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  transition: all ease-in-out 0.3s;
+}
+
+[data-theme="dark"] .btn {
+  color:var(--white);
+}
+
+
+.image-uploaded-container {
+  display: flex;
+  flex-direction: column;
+  gap:20px;
+
+}
+.image-uploaded-container .buttons-container {
+  display: flex;
+  justify-content: center;
+  gap:10px;
+}
+
+.error-message {
+  color: crimson;
+  margin-top: 10px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
 }

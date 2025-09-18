@@ -9,7 +9,7 @@ import ShowImageUploaded from "./showImageUploaded";
 const startFakeProgress = (setProgress:Function,setIsDroped:Function) => {
   let fakeProgress = 0;
   const interval = setInterval(() => {
-    fakeProgress = Math.min(fakeProgress + Math.random() * 7 + 3, 100); // progression aléatoire jusqu'à 95%
+    fakeProgress = Math.min(fakeProgress + Math.random() * 7 + 3, 100);
     setProgress(Math.round(fakeProgress));
     if(fakeProgress>=100){
       clearInterval(interval);
@@ -40,12 +40,6 @@ function ImageUploader() {
       try {
         const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/upload`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
-        // onUploadProgress: (progressEvent) => {
-        //   const percentCompleted = progressEvent.total
-        //   ? Math.round((progressEvent.loaded * 100) / progressEvent.total)
-        //   : 0;
-        //   setProgress(percentCompleted);
-        // },
       })
       setCurrentImage(res.data.url);
       setErrorMessage("")
@@ -76,7 +70,7 @@ function ImageUploader() {
                     <p className="img-valid">JPG,PNG or GIF - Max file size 2MB</p>
                 
                   {
-                    errorMessage
+                    errorMessage && <p className="error-message">{errorMessage}</p>
                   }
                 </div>
               </div>
