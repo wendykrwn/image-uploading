@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import logo from "/logo.svg"
 import moon from "/src/assets/Moon_fill.svg"
 import sun from "/src/assets/Sun_fill.svg"
 
@@ -20,7 +19,7 @@ const Navbar = ({ onLogoClick }: NavbarProps) => {
         <div className="navbar">
             <div className="navbar-content">
                 <div className="pointer" onClick={onLogoClick} >
-                    <img src={logo} alt="logo"/>
+                    <img src={"/logo.svg"} alt="logo"/>
                 </div>
                 <button className="toggle-theme"
                     type="button"

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react"
-import { useDropzone } from "react-dropzone"
+import { useDropzone, type DropEvent, type FileRejection } from "react-dropzone"
 import uploadImg from "../assets/exit.svg"
 import {clsx} from "clsx"
 import axios from "axios";
@@ -31,7 +31,7 @@ function ImageUploader() {
       }
     },[isDroped])
 
-    const onDrop =  useCallback(async (acceptedFiles:[File] )=> {
+    const onDrop =  useCallback(async (acceptedFiles: File[], _fileRejections: FileRejection[], _event: DropEvent)=> {
       setIsDroped(true)
       const currFile = acceptedFiles[0]
       const formData = new FormData()
@@ -44,7 +44,13 @@ function ImageUploader() {
       setCurrentImage(res.data.url);
       setErrorMessage("")
     } catch(error){
-        const message = error?.response?.data?.error || error?.message;
+      let message = "Unknown error";
+
+      if (axios.isAxiosError(error)) {
+        message = error.response?.data?.error || error.message;
+      } else if (error instanceof Error) {
+        message = error.message;
+      }
         setErrorMessage(message)
         setIsDroped(false)
       }
